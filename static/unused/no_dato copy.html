@@ -1,0 +1,12 @@
+<tr>
+    <th class="th border p-1 text-right" style="font-size: 1.1rem;"><b>Totales</b></th>
+    <th class="th border p-1 text-right" style="font-size: 1.1rem;">
+        <b>{{ '{:0,.2f}'.format(datos_saldo["mano_de_obra"]+datos_saldo["total_repuestos"]+datos_saldo["total_otros_servicios"]+datos_saldo["bodegaje_monto"]) }}</b>
+    </th>
+    <th class="th border p-1 text-right" style="font-size: 1.1rem;">
+        <b>{{ '{:0,.2f}'.format(datos_saldo["mano_de_obra_impuesto"]+datos_saldo["total_repuestos_impuesto"]+datos_saldo["total_otros_servicios_impuesto"]+datos_saldo["bodegaje_monto_impuesto"]) }}</b>
+    </th>
+    <th class="th border p-1 text-right" style="font-size: 1.1rem;">
+        <b>{{ '{:0,.2f}'.format(datos_saldo["mano_de_obra"]+datos_saldo["total_repuestos"]+datos_saldo["total_otros_servicios"]+datos_saldo["bodegaje_monto"]+datos_saldo["mano_de_obra_impuesto"]+datos_saldo["total_repuestos_impuesto"]+datos_saldo["total_otros_servicios_impuesto"]+datos_saldo["bodegaje_monto_impuesto"]) }}</b>
+    </th>
+</tr>

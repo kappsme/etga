@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, shrink-to-fit=no">
+    <title>Ingresa a tu KAPP!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bs441/css/bootstrap.spacelab.css') }}">
+</head>
+
+<body>
+    <br>
+    <br>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-xs-12 col-md-6 offset-md-3 p-0 m-0 align-self-center">
+
+                <div class="login p-0">
+                    <h1 style="font-size: 2.5rem;">KAPPS.me</h1>
+
+                    <form action="{{ url_for('login') }}" method="post">
+
+
+                        <img src="{{ url_for('static', filename='icons_svg/user.svg') }}" alt="Usuario" class="p-0 m-0"
+                            width="50px" height="50px" style="background-color:#296cd1;">
+                        <input type="text" name="username" placeholder="Usuario" id="username" style="font-size:1.5rem;" required>
+                        <br>
+
+
+                        <img src="{{ url_for('static', filename='icons_svg/key.svg') }}" alt="Password" class="p-0 m-0"
+                            width="50px" height="50px" style="background-color:#296cd1;">
+                        <input type="password" name="password" placeholder="Contraseña" id="password"
+                            style="font-size:1.5rem;" required>
+                        {% if msg: %}
+                        <div class="alert alert-danger" role="alert">{{ msg }}</div>
+                        {% endif %}
+
+                        <input type="submit" value="INGRESAR" style="font-size:2rem;">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
