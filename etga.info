@@ -1,0 +1,6 @@
+docker build -t etga .
+docker run -d -p 3000:3000 -v "$(pwd):/app" etga
+
+# Activar PING en el bash
+apt-get update -y
+apt-get install -y iputils-ping
