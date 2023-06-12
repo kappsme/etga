@@ -337,6 +337,7 @@ def kcrud_usuario(mysql, accion, parametro, parametro2, aplication_id, parametro
                     [chr(randint(48, 57)) for i in range(password_conf[char_type])]
                 )
         # GUARDA EL NUEVO USUARIO
+        cadena_password = os.getenv('MYSQL_PASSWORD_ENCRYPT_CHAIN')
         cursor.execute(
             "insert into kapps_db.accounts (username, email, name, lastname, kapp_id, nivel, estado, bloqueo, vigencia, password_reset, password2) \
                 values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,aes_encrypt(%s,UNHEX(SHA2(%s,512))))",
@@ -348,7 +349,7 @@ def kcrud_usuario(mysql, accion, parametro, parametro2, aplication_id, parametro
                     apellidos,
                     aplication_id,
                     parametro3["nivel"],
-                    1,
+                    1, 
                     0,
                     1200,
                     1,

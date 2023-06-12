@@ -1,6 +1,9 @@
 docker build -t etga .
-docker run -d -p 3000:3000 -v "$(pwd):/app" etga
+docker run -dp 3000:3000 --net kappsnet -v "$(pwd):/app" etga
 
-# Activar PING en el bash
+docker network create --subnet=172.25.0.0/16 kappsnet  
+
+
+# Activar PING en el bash (Para etga)
 apt-get update -y
 apt-get install -y iputils-ping
