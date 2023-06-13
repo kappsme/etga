@@ -171,14 +171,14 @@ def home():
                 boletas_bodegaje += 1
         # ALERTAS
         cursor.execute(
-            "select a.id id_alerta, a.id_boleta, ifnull(fecha_envio,'-') fecha_envio, case when isnull(fecha_envio) then 'Pendiente' else 'Enviado' end estado \
-                , acf.tipo, acf.descripcion, acf.mensaje, ec.telefono  \
-            from alertas a left join alertas_conf acf on acf.id=a.id_alerta_conf \
-                left join boletas b on b.id_boleta=a.id_boleta \
-                left join tx_clientes ec on ec.id=b.id_cliente \
-            where a.estado=1 and acf.estado=1  \
-                and (fecha_aceptada is null or fecha_envio is null) \
-                and timestampdiff(day,a.fecha_ingreso,sysdate())>dia"
+            """select a.id id_alerta, a.id_boleta, ifnull(fecha_envio,'-') fecha_envio, case when isnull(fecha_envio) then 'Pendiente' else 'Enviado' end estado
+                , acf.tipo, acf.descripcion, acf.mensaje, ec.telefono  
+            from alertas a left join alertas_conf acf on acf.id=a.id_alerta_conf 
+                left join boletas b on b.id_boleta=a.id_boleta 
+                left join tx_clientes ec on ec.id=b.id_cliente 
+            where a.estado=1 and acf.estado=1  
+                and ((a.fecha_aceptada is null and acf.id=3) or (fecha_envio is null and acf.id in (1,2))) 
+                and timestampdiff(day,a.fecha_ingreso,sysdate())>dia"""
         )
         alertas = cursor.fetchall()
         cursor.close()

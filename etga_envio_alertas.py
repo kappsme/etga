@@ -58,15 +58,15 @@ def envio_correo(tipo_mensaje, destinatario, adjunto, extra):
 cursor=mydb.cursor()
 cursor.execute("SET session time_zone = '-6:00'")
 cursor.execute(
-    "select a.id id_alerta, a.id_boleta \
-        , acf.tipo, acf.mensaje, ec.correo  \
-    from alertas a left join alertas_conf acf on acf.id=a.id_alerta_conf \
-        left join boletas b on b.id_boleta=a.id_boleta \
-        left join tx_clientes ec on ec.id=b.id_cliente \
-    where a.estado=1 and acf.estado=1  \
-        and acf.tipo = 'EMAIL' \
-        and fecha_envio is null \
-        and timestampdiff(day,a.fecha_ingreso,sysdate())>=dia"
+    """select a.id id_alerta, a.id_boleta 
+        , acf.tipo, acf.mensaje, ec.correo  
+    from alertas a left join alertas_conf acf on acf.id=a.id_alerta_conf 
+        left join boletas b on b.id_boleta=a.id_boleta 
+        left join tx_clientes ec on ec.id=b.id_cliente 
+    where a.estado=1 and acf.estado=1  
+        and acf.tipo = 'EMAIL' 
+        and fecha_envio is null 
+        and timestampdiff(day,a.fecha_ingreso,sysdate())>=dia"""
 )
 datos = cursor.fetchall()
 if datos is not None:
